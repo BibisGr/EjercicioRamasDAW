@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Store - Tienda de Compra</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>DRAGON STORE</h1>
+                <p class="tagline">¡El Poder está en tus manos!</p>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="../index.html#comics">Comics</a></li>
+                    <li><a href="../index.html#figuras">Figuras</a></li>
+                    <li><a href="../index.html#ofertas">Ofertas</a></li>
+                    <li><a href="Tienda.html">Tienda</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <a href="../index.html">Inicio</a> > <span>Tienda</span>
+        </div>
+    </section>
+
+    <!-- Tienda Section -->
+    <section class="shop-section">
+        <div class="container">
+            <h1 class="section-title">CATÁLOGO COMPLETO</h1>
+
+            <!-- Filtros -->
+            <div class="shop-filters">
+                <div class="filter-group">
+                    <h3>Categoría</h3>
+                    <label><input type="checkbox" checked> Todos (8)</label>
+                    <label><input type="checkbox"> Comics (4)</label>
+                    <label><input type="checkbox"> Figuras (4)</label>
+                </div>
+                <div class="filter-group">
+                    <h3>Rango de Precio</h3>
+                    <label><input type="checkbox" checked> Todos</label>
+                    <label><input type="checkbox"> €0 - €20</label>
+                    <label><input type="checkbox"> €20 - €40</label>
+                    <label><input type="checkbox"> €40+</label>
+                </div>
+                <div class="filter-group">
+                    <h3>Estado</h3>
+                    <label><input type="checkbox"> Nuevos</label>
+                    <label><input type="checkbox"> Ofertas</label>
+                    <label><input type="checkbox"> Exclusivos</label>
+                </div>
+            </div>
+
+            <!-- Grid de productos -->
+            <div class="shop-grid">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <div class="product-badge">NUEVO</div>
+                    <div class="product-image" style="background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);">
+                        <div class="product-icon">📖</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Dragon Ball Z Vol. 1</h3>
+                        <p class="product-category">Comic</p>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(24 reviews)</span>
+                        </div>
+                        <p class="product-description">Edición de bolsillo del primer volumen de la saga Dragon Ball Z con traducción al español.</p>
+                        <div class="product-footer">
+                            <div class="price-section">
+                                <span class="product-price">€12.99</span>
+                            </div>
+                            <button class="btn-add-cart">🛒 Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="product-badge">POPULAR</div>
+                    <div class="product-image" style="background: linear-gradient(135deg, #f72585 0%, #b5179e 100%);">
+                        <div class="product-icon">📚</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Dragon Ball Super Vol. 15</h3>
+                        <p class="product-category">Comic</p>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <span class="reviews">(18 reviews)</span>
+                        </div>
+                        <p class="product-description">Último volumen de Dragon Ball Super con todas las aventuras y batallas épicas.</p>
+                        <div class="product-footer">
+                            <div class="price-section">
+                                <span class="product-price">€14.99</span>
+                            </div>
+                            <button class="btn-add-cart">🛒 Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);">
+                        <div class="product-icon">📗</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Dragon Ball Box Set</h3>
+                        <p class="product-category">Comic</p>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(42 reviews)</span>
+                        </div>
+                        <p class="product-description">Colección completa de Dragon Ball en una hermosa caja de presentación con estuche premium.</p>
+                        <div class="product-footer">
+                            <div class="price-section">
+                                <span class="product-price">€89.99</span>
+                            </div>
+                            <button class="btn-add-cart">🛒 Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <div class="product-badge">OFERTA</div>
+                    <div class="product-image" style="background: linear-gradient(135deg, #06ffa5 0%, #00d9ff 100%);">
+                        <div class="product-icon">📘</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Dragon Ball GT Vol. 3</h3>
+                        <p class="product-category">Comic</p>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <span class="reviews">(15 reviews)</span>
+                        </div>
+                        <p class="product-description">Volumen 3 de Dragon Ball GT con el mejor precio del mercado. ¡No te lo pierdas!</p>
+                        <div class="product-footer">
+                            <div class="price-section">
+                                <span class="product-price">€9.99</span>
+                                <span class="old-price">€13.99</span>
+                            </div>
+                            <button class="btn-add-cart">🛒 Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 5 -->
+                <div class="product-card">
+                    <div class="product-badge">NUEVO</div>
+                    <div class="product-image" style="background: linear-gradient(135deg, #ffba08 0%, #faa307 100%);">
+                        <div class="product-icon">🥋</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Goku Super Saiyan</h3>
+                        <p class="product-category">Figura de Acción</p>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(56 reviews)</span>
+                        </div>
+                        <p class="product-description">Figura articulada de Goku en modo Super Saiyan de 15 cm con accesorios intercambiables.</p>
+                        <div class="product-footer">
+                            <div class="price-section">
+                                <span class="product-price">€34.99</span>
+                            </div>
+                            <button class="btn-add-cart">🛒 Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 6 -->
+                <div class="product-card">
+                    <div class="product-badge">EXCLUSIVA</div>
+                    <div class="product-image" style="background: linear-gradient(135deg, #7209b7 0%, #560bad 100%);">
+                        <div class="product-icon">👊</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Vegeta Blue Evolution</h3>
+                        <p class="product-category">Figura de Acción</p>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(38 reviews)</span>
+                        </div>
+                        <p class="product-description">Figura premium de Vegeta Blue Evolution con efecto de energía y base de exhibición lujo.</p>
+                        <div class="product-footer">
+                            <div class="price-section">
+                                <span class="product-price">€39.99</span>
+                            </div>
+                            <button class="btn-add-cart">🛒 Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 7 -->
+                <div class="product-card">
+                    <div class="product-image" style="background: linear-gradient(135deg, #06ffa5 0%, #00b4d8 100%);">
+                        <div class="product-icon">⚡</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Gohan Ultimate</h3>
+                        <p class="product-category">Figura de Acción</p>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(29 reviews)</span>
+                        </div>
+                        <p class="product-description">Figura articulada de Gohan en su forma definitiva con múltiples puntos de articulación.</p>
+                        <div class="product-footer">
+                            <div class="price-section">
+                                <span class="product-price">€32.99</span>
+                            </div>
+                            <button class="btn-add-cart">🛒 Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 8 -->
+                <div class="product-card">
+                    <div class="product-badge">OFERTA</div>
+                    <div class="product-image" style="background: linear-gradient(135deg, #ef476f 0%, #d62828 100%);">
+                        <div class="product-icon">💥</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Set 7 Esferas Dragón</h3>
+                        <p class="product-category">Accesorios</p>
+                        <div class="product-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="reviews">(67 reviews)</span>
+                        </div>
+                        <p class="product-description">Conjunto completo de las 7 esferas del dragón. Coleccionable de alta calidad con estuche.</p>
+                        <div class="product-footer">
+                            <div class="price-section">
+                                <span class="product-price">€24.99</span>
+                                <span class="old-price">€34.99</span>
+                            </div>
+                            <button class="btn-add-cart">🛒 Carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DRAGON STORE</h3>
+                    <p>Tu tienda de confianza para comics y figuras de acción</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="../index.html#comics">Comics</a></li>
+                        <li><a href="../index.html#figuras">Figuras</a></li>
+                        <li><a href="Tienda.html">Tienda</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>Email: info@dragonstore.com</p>
+                    <p>Tel: +34 123 456 789</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dragon Store. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
