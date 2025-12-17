@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pago - Dragon Store</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Estilos específicos para el formulario de pago */
+        .payment-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .payment-title {
+            text-align: center;
+            color: var(--orange-primary);
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            font-family: 'Bangers', cursive;
+            text-shadow: 2px 2px 4px var(--shadow);
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px var(--shadow);
+            border-top: 5px solid var(--orange-primary);
+        }
+
+        .form-section h3 {
+            color: var(--orange-primary);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-section h3::before {
+            content: '✓';
+            font-weight: bold;
+            font-size: 1.3em;
+            color: var(--yellow-goku);
+            text-shadow: 1px 1px 2px var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--black);
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--orange-primary);
+            box-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+            background-color: #fff9f0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Orden de compra */
+        .order-summary {
+            background: linear-gradient(135deg, var(--gray-light) 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px var(--shadow);
+            border-top: 5px solid var(--blue-primary);
+            grid-column: 1 / -1;
+        }
+
+        .order-summary h3 {
+            color: var(--blue-primary);
+        }
+
+        .order-summary h3::before {
+            content: '🛒';
+            margin-right: 8px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-name {
+            flex: 1;
+            color: var(--black);
+            font-weight: 500;
+        }
+
+        .order-item-price {
+            color: var(--orange-primary);
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .order-totals {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--orange-primary);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .total-row.final {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--orange-primary);
+            margin-top: 15px;
+        }
+
+        /* Métodos de pago */
+        .payment-methods {
+            margin-top: 30px;
+            grid-column: 1 / -1;
+        }
+
+        .payment-methods h3 {
+            color: var(--purple-vegeta);
+        }
+
+        .payment-methods h3::before {
+            content: '💳';
+            margin-right: 8px;
+        }
+
+        .payment-method-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .payment-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .payment-option input[type="radio"] {
+            display: none;
+        }
+
+        .payment-option label {
+            display: block;
+            padding: 20px;
+            border: 2px solid var(--gray-light);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: var(--black);
+            margin: 0;
+        }
+
+        .payment-option input[type="radio"]:checked + label {
+            border-color: var(--purple-vegeta);
+            background-color: #f0e6ff;
+            box-shadow: 0 0 15px rgba(114, 9, 183, 0.2);
+        }
+
+        /* Sección de tarjeta de crédito */
+        .credit-card-section {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            border: 2px dashed var(--orange-primary);
+        }
+
+        .credit-card-section.active {
+            display: block;
+        }
+
+        .credit-card-preview {
+            background: linear-gradient(135deg, var(--orange-primary) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px var(--shadow);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: 'Courier New', monospace;
+        }
+
+        .card-chip {
+            width: 50px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--yellow-goku) 0%, #ffed4e 100%);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .card-number {
+            font-size: 1.5em;
+            letter-spacing: 3px;
+            margin: 20px 0;
+        }
+
+        .card-holder,
+        .card-expiry {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        /* Botones */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            justify-content: center;
+            grid-column: 1 / -1;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--orange-primary) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            border: none;
+            padding: 15px 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-cancel {
+            background: var(--gray-light);
+            color: var(--black);
+            border: 2px solid var(--black);
+            padding: 15px 50px;
+            font-size: 1.1em;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-cancel:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .payment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-method-options {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-title {
+                font-size: 2em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn-submit,
+            .btn-cancel {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>DRAGON STORE</h1>
+                <p class="tagline">¡El Poder está en tus manos!</p>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="../index.html#comics">Comics</a></li>
+                    <li><a href="../index.html#figuras">Figuras</a></li>
+                    <li><a href="../index.html#ofertas">Ofertas</a></li>
+                    <li><a href="Tienda.html">Tienda</a></li>
+                    <li><a href="../index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Formulario de Pago -->
+    <div class="payment-container">
+        <h1 class="payment-title">COMPLETA TU COMPRA</h1>
+
+        <form id="paymentForm">
+            <div class="payment-grid">
+                <!-- Datos Personales -->
+                <div class="form-section">
+                    <h3>Datos Personales</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Nombre</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Apellido</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Tu apellido" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="tu@correo.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+34 XXX XXX XXX" required>
+                    </div>
+                </div>
+
+                <!-- Dirección de Envío -->
+                <div class="form-section">
+                    <h3>Dirección de Envío</h3>
+                    
+                    <div class="form-group">
+                        <label for="address">Calle y Número</label>
+                        <input type="text" id="address" name="address" placeholder="Calle Principal 123" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">Ciudad</label>
+                            <input type="text" id="city" name="city" placeholder="Madrid" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postalCode">Código Postal</label>
+                            <input type="text" id="postalCode" name="postalCode" placeholder="28001" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">País</label>
+                        <select id="country" name="country" required>
+                            <option value="">Selecciona un país</option>
+                            <option value="ES">España</option>
+                            <option value="MX">México</option>
+                            <option value="AR">Argentina</option>
+                            <option value="CO">Colombia</option>
+                            <option value="PE">Perú</option>
+                            <option value="CL">Chile</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Resumen de Compra -->
+                <div class="order-summary">
+                    <h3>Resumen de Compra</h3>
+                    
+                    <div class="order-item">
+                        <span class="order-item-name">Manga Dragon Ball Tomo 1</span>
+                        <span class="order-item-price">€15.99</span>
+                    </div>
+                    <div class="order-item">
+                        <span class="order-item-name">Figura Goku Super Saiyan</span>
+                        <span class="order-item-price">€49.99</span>
+                    </div>
+                    <div class="order-item">
+                        <span class="order-item-name">Poster Dragon Ball Original</span>
+                        <span class="order-item-price">€9.99</span>
+                    </div>
+
+                    <div class="order-totals">
+                        <div class="total-row">
+                            <span>Subtotal:</span>
+                            <span>€75.97</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Envío:</span>
+                            <span>€9.99</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Impuestos:</span>
+                            <span>€17.28</span>
+                        </div>
+                        <div class="total-row final">
+                            <span>Total:</span>
+                            <span>€103.24</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Métodos de Pago -->
+                <div class="form-section payment-methods">
+                    <h3>Método de Pago</h3>
+                    
+                    <div class="payment-method-options">
+                        <div class="payment-option">
+                            <input type="radio" id="creditCard" name="paymentMethod" value="credit-card" checked>
+                            <label for="creditCard">Tarjeta Crédito</label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="debitCard" name="paymentMethod" value="debit-card">
+                            <label for="debitCard">Tarjeta Débito</label>
+                        </div>
+                        <div class="payment-option">
+                            <input type="radio" id="paypal" name="paymentMethod" value="paypal">
+                            <label for="paypal">PayPal</label>
+                        </div>
+                    </div>
+
+                    <!-- Detalles de Tarjeta -->
+                    <div class="credit-card-section active" id="creditCardSection">
+                        <div class="credit-card-preview" id="cardPreview">
+                            <div class="card-chip"></div>
+                            <div class="card-number" id="cardNumberDisplay">•••• •••• •••• ••••</div>
+                            <div class="card-details">
+                                <div>
+                                    <div class="card-holder" id="cardHolderDisplay">NOMBRE APELLIDO</div>
+                                    <div class="card-expiry" id="cardExpiryDisplay">MM/AA</div>
+                                </div>
+                                <div style="font-size: 1.5em; font-weight: bold;">VISA</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cardNumber">Número de Tarjeta</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardExpiry">Fecha de Vencimiento (MM/AA)</label>
+                                <input type="text" id="cardExpiry" name="cardExpiry" placeholder="12/25" maxlength="5" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardCVC">CVC</label>
+                                <input type="text" id="cardCVC" name="cardCVC" placeholder="123" maxlength="4" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="button-group">
+                    <button type="submit" class="btn-submit">Pagar Ahora</button>
+                    <button type="button" class="btn-cancel" onclick="history.back()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Elementos del formulario
+        const paymentForm = document.getElementById('paymentForm');
+        const creditCardSection = document.getElementById('creditCardSection');
+        const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+        
+        // Elementos de la tarjeta
+        const cardNumberInput = document.getElementById('cardNumber');
+        const cardExpiryInput = document.getElementById('cardExpiry');
+        const cardCVCInput = document.getElementById('cardCVC');
+        const firstNameInput = document.getElementById('firstName');
+        const lastNameInput = document.getElementById('lastName');
+        
+        const cardNumberDisplay = document.getElementById('cardNumberDisplay');
+        const cardExpiryDisplay = document.getElementById('cardExpiryDisplay');
+        const cardHolderDisplay = document.getElementById('cardHolderDisplay');
+
+        // Cambiar sección de pago según método seleccionado
+        paymentMethods.forEach(method => {
+            method.addEventListener('change', function() {
+                if (this.value === 'credit-card' || this.value === 'debit-card') {
+                    creditCardSection.classList.add('active');
+                } else {
+                    creditCardSection.classList.remove('active');
+                }
+            });
+        });
+
+        // Actualizar vista previa del número de tarjeta
+        cardNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '');
+            let formattedValue = value.replace(/(\d{4})/g, '$1 ').trim();
+            e.target.value = formattedValue;
+            
+            // Mostrar últimos 4 dígitos
+            let displayValue = value.replace(/\d(?=\d{4})/g, '•');
+            displayValue = displayValue.replace(/(\d{4})/g, '$1 ').trim();
+            cardNumberDisplay.textContent = displayValue || '•••• •••• •••• ••••';
+        });
+
+        // Actualizar vista previa de la fecha
+        cardExpiryInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+            cardExpiryDisplay.textContent = value || 'MM/AA';
+        });
+
+        // Actualizar nombre del titular
+        firstNameInput.addEventListener('input', updateCardHolder);
+        lastNameInput.addEventListener('input', updateCardHolder);
+
+        function updateCardHolder() {
+            const fullName = (firstNameInput.value + ' ' + lastNameInput.value).toUpperCase().trim();
+            cardHolderDisplay.textContent = fullName || 'NOMBRE APELLIDO';
+        }
+
+        // Validar y enviar formulario
+        paymentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validaciones básicas
+            if (this.querySelector('input[name="paymentMethod"]:checked').value === 'credit-card' ||
+                this.querySelector('input[name="paymentMethod"]:checked').value === 'debit-card') {
+                
+                const cardNumber = cardNumberInput.value.replace(/\s/g, '');
+                if (cardNumber.length !== 16) {
+                    alert('Número de tarjeta inválido (debe tener 16 dígitos)');
+                    return;
+                }
+                
+                if (cardExpiryInput.value.length !== 5) {
+                    alert('Fecha de vencimiento inválida');
+                    return;
+                }
+                
+                if (cardCVCInput.value.length < 3) {
+                    alert('CVC inválido');
+                    return;
+                }
+            }
+            
+            // Mostrar mensaje de éxito
+            alert('¡Pago completado exitosamente! 🎉\n\nGracias por tu compra en Dragon Store. Recibirás un correo de confirmación en breve.');
+            
+            // Aquí se enviaría el formulario al servidor
+            // this.submit();
+        });
+
+        // Permitir solo números en campos numéricos
+        cardCVCInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+    </script>
+</body>
+
+</html>
